@@ -20,6 +20,7 @@ def admin_required(view_func):
     return wrapper
 
 
+
 @admin_required
 def admin_dashboard(request):
     # Stats
@@ -36,8 +37,9 @@ def admin_dashboard(request):
         if entry.device_id not in seen:
             seen[entry.device_id] = entry
     buses = list(seen.values())
+    
 
-    # Users with filter/search
+    # Users with search/filter
     role_filter = request.GET.get('role', '')
     search = request.GET.get('q', '')
     users = CustomUser.objects.all().order_by('-date_joined')
